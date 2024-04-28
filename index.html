@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Mentor | Advice generator app</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <style>
+    /* CSS styles remain unchanged */
+    
+
+  .attribution { font-size: 11px; text-align: center; }
+  .attribution a { color: hsl(228, 45%, 44%); }
+  body {
+    background-color: hsl(218, 23%, 16%);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .card-container {
+    background-color:  hsl(217, 19%, 24%);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+  }
+  .card {
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+  }
+  .card__header {
+    color: hsl(150, 100%, 66%);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 20px;
+    font-size: 10px;
+  }
+  .quote {
+    color: hsl(193, 38%, 86%);
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 30px
+  }
+  .new-quote-btn {
+    position: absolute;
+    bottom: -10px; /* Adjust to push the button down */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: hsl(150, 100%, 66%);
+    border-radius: 50px;
+    width: 70px; /* Adjust size to make it smaller */
+    height: 70px; /* Adjust size to make it smaller */
+    border-radius: 50%; /* This makes it a circle */
+    overflow: hidden; /* Ensures image doesn't overflow the circle */
+    background-image: url('path_to_your_svg_image.svg'); /* Replace 'path_to_your_svg_image.svg' with the path to your SVG image */
+    background-size: cover; /* Ensures the SVG covers the entire circle */
+    display: flex; /* To center the SVG vertically and horizontally */
+    justify-content: center; /* To center the SVG horizontally */
+    align-items: center; /* To center the SVG vertically */
+  }
+  .new-quote-btn:hover {
+    background: hsl(150, 100%, 66%);
+    border-radius: 50px;
+    font-size: 30px;
+    box-shadow: 0 0 5px hsl(150, 100%, 66%), 
+    0 0 25px hsl(150, 100%, 66%),
+    0 0 50px hsl(150, 100%, 66%), 
+    0 0 100px hsl(150, 100%, 66%);  
+  }
+</style>
+
+</head>
+<body>
+  <div class="card-container">
+    <div class="card">
+      <div class="card__header">
+        Advice #117
+      </div>
+      <div class="quote" id="quote"> <!-- Updated to include the id attribute -->
+        "It is easy to sit up and take <br> notice, what's is getting <br>
+        up and taking action."
+        <br>
+        <svg width="444" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#4F5D74" d="M0 8h196v1H0zM248 8h196v1H248z"/><g transform="translate(212)" fill="#CEE3E9"><rect width="6" height="16" rx="3"/><rect x="14" width="6" height="16" rx="3"/></g></g></svg>
+      </div>
+    </div>
+    <svg width="295" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#4F5D74" d="M0 8h122v1H0zM173 8h122v1H173z"/><g transform="translate(138)" fill="#CEE3E9"><rect width="6" height="16" rx="3"/><rect x="14" width="6" height="16" rx="3"/></g></g></svg>
+    <button class="new-quote-btn" id="new-quote-btn"> <!-- Updated to include the id attribute -->
+      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#202733"/></svg>
+    </button>  
+  </div>
+  <br> <br>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Owolabi Zainab</a>.
+  </div>
+  <script>
+    // Array of quotes
+    const quotes = [
+        "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
+        "The way to get started is to quit talking and begin doing. - Walt Disney",
+        "Life is what happens when you're busy making other plans. - John Lennon",
+        "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+        "In the end, it's not the years in your life that count. It's the life in your years. - Abraham Lincoln",
+        "Self-doubt kills talent.- Edie McClurg",
+        "Believe you can and you're halfway there. Theodore Roosevelt",
+        "You get what you give. – Jennifer Lopez",
+        "Your life only gets better when you get better.- Brian Tracy",
+        "Happiness is not by chance, but by choice. – Jim Rohn"
+          ];
+
+    // Function to generate a random quote
+    function generateQuote() {
+        const randomNumber = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomNumber];
+        document.getElementById('quote').innerHTML = randomQuote; // Using innerHTML to render HTML line breaks
+    }
+
+    // Event listener for the button click
+    document.getElementById('new-quote-btn').addEventListener('click', generateQuote);
+
+    // Generate a random quote when the page loads
+    generateQuote();
+  </script>
+</body>
+</html>
+
